@@ -25,17 +25,15 @@ namespace ConsoleConverter
                     continue;
                 }
 
-                DateTime asStandard;
-                bool standard = TryCreateDateTime(digits[0], digits[1], digits[2], out asStandard);
+                bool standard = TryCreateDateTime(digits[0], digits[1], digits[2], out DateTime asStandard);
                 if (standard)
                 {
                     DateCustom dateCustom = DateConverter.ConvertStandard(asStandard);
                     Console.WriteLine($"To custom:   {asStandard.AsString()} -> {dateCustom}");
                 }
 
-                DateCustom asCustom;
-                bool custom = DateCustom.TryCreate((byte)digits[0], (byte)digits[1],
-                                                   (ushort)digits[2], out asCustom);
+                bool custom =
+                    DateCustom.TryCreate((byte)digits[0], (byte)digits[1], (ushort)digits[2], out DateCustom asCustom);
                 if (custom)
                 {
                     DateTime dateStandard = DateConverter.ConvertCustom(asCustom);
@@ -77,16 +75,13 @@ namespace ConsoleConverter
                 dateTime = new DateTime(year, month, day);
                 return true;
             }
-            catch (Exception)
+            catch
             {
                 dateTime = new DateTime(1, 1, 1);
                 return false;
             }
         }
 
-        private static string AsString(this DateTime dateTime)
-        {
-            return dateTime.ToString("D", CultureInfo.InvariantCulture);
-        }
+        private static string AsString(this DateTime dateTime) => dateTime.ToString("D", CultureInfo.InvariantCulture);
     }
 }
