@@ -76,7 +76,7 @@ namespace CustomCalendar
         public override string ToString()
         {
             string month = CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(Month);
-            return string.Format($"{DayOfWeek}, {Day.ToString("D2")} {month} {Year.ToString("D4")}");
+            return $"{DayOfWeek}, {Day:D2} {month} {Year:D4}";
         }
     }
 }
