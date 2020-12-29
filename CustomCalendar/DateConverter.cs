@@ -7,13 +7,13 @@ namespace CustomCalendar
         public static DateCustom ConvertStandard(DateTime date)
         {
             ushort dayNumber = ToDayNumber(date);
-            return DayNumberToCustom(dayNumber, (ushort)date.Year);
+            return DayNumberToCustom(dayNumber, date.Year);
         }
 
         public static DateTime ConvertCustom(DateCustom date)
         {
             ushort dayNumber = ToDayNumber(date);
-            return DayNumberToStandard(dayNumber, date.Year);
+            return DayNumberToStandard(dayNumber, (ushort) (date.Year - DateCustom.YearsDifference));
         }
 
         private static ushort ToDayNumber(DateTime date)
@@ -36,10 +36,11 @@ namespace CustomCalendar
             return new DateTime(year, 1, 1).AddDays(dayNumber - 1);
         }
 
-        private static DateCustom DayNumberToCustom(ushort dayNumber, ushort year)
+        private static DateCustom DayNumberToCustom(ushort dayNumber, int standartYear)
         {
             int day = dayNumber;
             byte month = 1;
+            ushort year = (ushort) (standartYear + DateCustom.YearsDifference);
 
             int daysInJanuary = DateCustom.DaysInJanuary(year);
             if (dayNumber > daysInJanuary)
@@ -54,7 +55,7 @@ namespace CustomCalendar
                 }
             }
 
-            return new DateCustom((byte)day, month, year);
+            return new DateCustom((byte) day, month, year);
         }
     }
 }

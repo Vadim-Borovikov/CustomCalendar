@@ -12,6 +12,11 @@ namespace CustomCalendar
 
         public DateCustom(byte day, byte month, ushort year)
         {
+            if (year < YearsDifference)
+            {
+                throw new ArgumentOutOfRangeException(nameof(year));
+            }
+
             if (month > 12)
             {
                 throw new ArgumentOutOfRangeException(nameof(month));
@@ -40,9 +45,9 @@ namespace CustomCalendar
                 dateCustom = new DateCustom(day, month, year);
                 return true;
             }
-            catch (Exception)
+            catch
             {
-                dateCustom = new DateCustom(1, 1, 1);
+                dateCustom = new DateCustom(1, 1, 10001);
                 return false;
             }
         }
@@ -70,6 +75,10 @@ namespace CustomCalendar
 
         internal static byte DaysInJanuary(ushort year)
         {
+            if (year >= YearsDifference)
+            {
+                year -= YearsDifference;
+            }
             return (byte)(DateTime.IsLeapYear(year) ? 14 : 13);
         }
 
@@ -78,5 +87,7 @@ namespace CustomCalendar
             string month = CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(Month);
             return $"{DayOfWeek}, {Day:D2} {month} {Year:D4}";
         }
+
+        internal const ushort YearsDifference = 10000;
     }
 }

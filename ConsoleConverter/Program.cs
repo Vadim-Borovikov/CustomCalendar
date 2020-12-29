@@ -32,8 +32,8 @@ namespace ConsoleConverter
                     Console.WriteLine($"To custom:   {asStandard.AsString()} -> {dateCustom}");
                 }
 
-                bool custom =
-                    DateCustom.TryCreate((byte)digits[0], (byte)digits[1], (ushort)digits[2], out DateCustom asCustom);
+                bool custom = DateCustom.TryCreate((byte) digits[0], (byte) digits[1], (ushort) digits[2],
+                    out DateCustom asCustom);
                 if (custom)
                 {
                     DateTime dateStandard = DateConverter.ConvertCustom(asCustom);
