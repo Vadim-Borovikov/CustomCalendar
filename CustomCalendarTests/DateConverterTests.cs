@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CustomCalendarTests
 {
     [TestClass]
-    public class DateConverterTests
+    public sealed class DateConverterTests
     {
         [TestMethod]
         public void ConvertStandardTest()

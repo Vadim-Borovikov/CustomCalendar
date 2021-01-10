@@ -16,10 +16,7 @@ namespace CustomCalendar
             return DayNumberToStandard(dayNumber, (ushort) (date.Year - DateCustom.YearsDifference));
         }
 
-        private static ushort ToDayNumber(DateTime date)
-        {
-            return (ushort) date.DayOfYear;
-        }
+        private static ushort ToDayNumber(DateTime date) => (ushort) date.DayOfYear;
 
         private static ushort ToDayNumber(DateCustom date)
         {

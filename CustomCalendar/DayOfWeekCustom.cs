@@ -1,5 +1,8 @@
-﻿namespace CustomCalendar
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CustomCalendar
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public enum DayOfWeekCustom
     {
         Monday = 1,
